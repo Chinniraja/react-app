@@ -19,6 +19,28 @@ function App() {
           Learn React
         </a>
         <Link to="/page-1">Page 1</Link>
+        <ul className="home-page">
+      <li>
+        <Link to="/home">Home</Link>
+      </li>
+      <li>
+        <Link to="/parent-counter">ParentCounter</Link>
+      </li>
+      <li>
+        <Link to="/todos">Todos</Link>
+      </li>
+      <li>
+        <Link to="/form-components">Form Components</Link>
+      </li>
+      <li>
+        <Link to="/countries-dashboard">Countries Dashboard</Link>
+      </li>
+      
+      <li>
+        <Link to="/game-dashboard">Emoji Game</Link>
+      </li>
+      
+    </ul>
       </header>
     </div>
   );
