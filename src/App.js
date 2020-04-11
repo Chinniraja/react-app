@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
+import {observer} from 'mobx-react';
+
 import {AddNewTodo} from "./components/todos-app/todos-component.js";
 // import "./components/todos-app/todos.css";
 // import './components/my-first-node/node.css';
@@ -14,35 +16,85 @@ import Page1 from "./components/Page1";
 import "./App.css";
 import {CountriesDashboardConatiner} from './components/countries-dashboard/App/styledComponent.js';
 import GameDashboard from './components/EmojiGame/GameDashboard/gameDashboard.js';
+import CounterPage from './components/CounterPage/index.js';
+import themeStore from './stores/Store/ThemeStore/';
+import CounterApp from './components/CounterApp/counterApp.js';
+import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/mobxTodoApp.js';
+import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard.js'
+import A from './components/ProviderInject/A/a.js';
+// import {configure} from 'mobx';
 
+// configure({ enforceActions: true});
+
+@observer
 class App extends React.Component {
-  state={
-    selectedTheme:'Light Mode',
-    theme:'light',
-    themeOption:  {
-      light: {
-        id: "0",
-        name: "#fff"
-      },
-      dark: {
-        id: "1",
-        name: "#2b3945"
-      }
-    }
+  getCurrentTheme = () => {
+    return themeStore.selectedTheme;
   }
   
   changeTheme = () => {
-    const mode = (this.state.selectedTheme === 'Light Mode') ? 'Dark Mode' : 'Light Mode';
-    const theme = (this.state.selectedTheme === 'Light Mode') ? 'dark' : 'light';
-    this.setState({selectedTheme:mode,theme});
+    themeStore.setCurrentTheme();
   }
   
+  // changeTheme = () => {
+  //   if(this.getCurrentTheme() === 'light'){
+  //     this.setCurrentTheme('dark');
+  //   }
+  //   else{
+  //     this.setCurrentTheme('light');
+  //   }
+  // }
+  
+  // state={
+  //   selectedTheme:'Light Mode',
+  //   theme:'light',
+  //   themeOption:  {
+  //     light: {
+  //       id: "0",
+  //       name: "#fff"
+  //     },
+  //     dark: {
+  //       id: "1",
+  //       name: "#2b3945"
+  //     }
+  //   }
+  // }
+  
+  // changeTheme = () => {
+  //   const mode = (this.state.selectedTheme === 'Light Mode') ? 'Dark Mode' : 'Light Mode';
+  //   const theme = (this.state.selectedTheme === 'Light Mode') ? 'dark' : 'light';
+  //   this.setState({selectedTheme:mode,theme});
+  // }
+  
   render(){
-    const {selectedTheme,theme} = this.state;
-    const mode = this.state.themeOption[theme];
+    // const {theme} = this.state;
+    // const mode = this.state.themeOption[theme];
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
+          <Route  path="/counter-page">
+            <CounterPage />
+          </Route>
+          
+          <Route  path="/provider-inject">
+            <A />
+          </Route>
+          
+          <Route  path="/event-dashboard">
+            <EventsDashboard />
+          </Route>
+          
+          
+          <Route  path="/mobx-todo-app">
+            <MobxTodoApp />
+          </Route>
+          
+          
+          <Route  path="/counter-app">
+            <CounterApp />
+          </Route>
+          
+          
           <Route  path="/page-1">
             <Page1 />
           </Route>
@@ -69,8 +121,8 @@ class App extends React.Component {
           
           <Route path="/countries-dashboard">
             <CountriesDashboardConatiner>  
-              <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={selectedTheme} color={mode.name}/>
-              <CountriesDashboardApp color={mode.name}/>
+              <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={this.getCurrentTheme()} />
+              <CountriesDashboardApp />
             </CountriesDashboardConatiner>
           </Route>
           <Route path="/game-dashboard">
@@ -79,9 +131,9 @@ class App extends React.Component {
           
           <Route exact path="/:id" children=
             {
-              <CountriesDashboardConatiner color={mode.name}>
-                <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={selectedTheme} color={mode.name}/>
-                <ShowCountryDetails color={mode.name}/>
+              <CountriesDashboardConatiner  selectedTheme={this.selectedTheme}>
+                <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={this.getCurrentTheme()} />
+                <ShowCountryDetails />
               </CountriesDashboardConatiner>
             }
           />
@@ -98,3 +150,11 @@ class App extends React.Component {
 
 
 export default App;
+
+
+{/*color={mode.name}*/} 
+{/*color={mode.name}
+color={mode.name}
+color={mode.name}
+color={mode.name}
+*/}
