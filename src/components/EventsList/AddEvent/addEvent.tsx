@@ -1,7 +1,14 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {StyledAddEventContainer,EventDetails,StyledInput,AddEventToEvents,AddEventButton} from './styledComponent.js';
-import eventStore from '../../../stores/Store/EventStore/eventStore.js';
+import eventStore from '../../../stores/Store/EventStore/eventStore';
+import {StyledAddEventContainer,EventDetails,StyledInput,AddEventToEvents,AddEventButton} from './styledComponent';
+
+type AddEventProps = {
+    onChangeEventName: Function,
+    onChangeEventLocation: Function,
+    onAddEvent: Function
+}
+
 
 @observer
 class AddEvent extends React.Component{

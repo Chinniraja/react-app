@@ -1,7 +1,7 @@
 import React from 'react';
-import CountryCard from '../CountryCard/countryCard.js';
-import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual.js';
-import {CountriesContainer,DataNotFound} from './styledComponent.js';
+import CountryCard from '../CountryCard/countryCard';
+import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual';
+import {CountriesContainer,DataNotFound} from './styledComponent';
 
 class RenderCountries extends React.Component{
     

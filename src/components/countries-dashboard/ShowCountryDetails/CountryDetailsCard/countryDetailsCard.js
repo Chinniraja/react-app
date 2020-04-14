@@ -1,6 +1,6 @@
 import React from 'react';
-import shallowEqual from '../../../../../node_modules/@babel/types/lib/utils/shallowEqual.js';
-import {StyledContryDetails,CountryDetails,Button,BorderCountriesContainer,Content,Span,CountryContentDetails,Buttons,CountryDetailsWrapper,I} from './styledComponent.js';
+import shallowEqual from '../../../../../node_modules/@babel/types/lib/utils/shallowEqual';
+import {StyledContryDetails,CountryDetails,Button,BorderCountriesContainer,Content,Span,CountryContentDetails,Buttons,CountryDetailsWrapper,I} from './styledComponent';
 
 class CountryDetailsCard extends React.Component{
     

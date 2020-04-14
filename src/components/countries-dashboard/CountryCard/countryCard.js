@@ -1,5 +1,5 @@
 import React from 'react';
-import {CountryCardProperties,CountryDetails,H3,Span} from './styledComponent.js';
+import {CountryCardProperties,CountryDetails,H3,Span} from './styledComponent';
 
 class CountryCard extends React.Component {
     

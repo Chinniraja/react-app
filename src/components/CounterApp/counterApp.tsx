@@ -1,8 +1,10 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import counterStateStore from '../../stores/Store/CounterStateStore/';
-import {StyledCounterContainer,Button,Input,Header,Counter} from './styledComponent.js';
 // import {configure} from 'mobx';
+
+import counterStateStore from '../../stores/Store/CounterStateStore/';
+import {StyledCounterContainer,Button,Input,Header,Counter} from './styledComponent';
+
 
 // configure({ enforceActions: true});
 

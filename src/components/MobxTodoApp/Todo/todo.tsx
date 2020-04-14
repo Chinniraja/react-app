@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import {MdDeleteForever} from 'react-icons/md';
-import {StyledTodo,CheckboxInput,TodoInput,Span} from './styledComponent.js';
+import {StyledTodo,CheckboxInput,TodoInput,Span} from './styledComponent';
 
 @observer
 class Todo extends React.Component{

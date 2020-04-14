@@ -1,5 +1,4 @@
 import {observable,action} from 'mobx';
-
 class EventModel{
     @observable id
     @observable eventName

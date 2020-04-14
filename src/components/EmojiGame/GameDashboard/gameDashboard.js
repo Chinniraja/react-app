@@ -1,8 +1,8 @@
 import React from 'react';
-import HeaderSection from '../HeaderSection/headerSection.js';
-import RenderEmojis from '../RenderEmojis/renderEmojis.js';
-import FooterSection from '../FooterSection/footerSection.js';
-import {DashboardContainer} from './styledComponent.js';
+import HeaderSection from '../HeaderSection/headerSection';
+import RenderEmojis from '../RenderEmojis/renderEmojis';
+import FooterSection from '../FooterSection/footerSection';
+import {DashboardContainer} from './styledComponent';
 
 class GameDashboard extends React.Component{
     state = {

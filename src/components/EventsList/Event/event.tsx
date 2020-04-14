@@ -1,10 +1,20 @@
 import React from 'react';
-import {StyledEventContainer,EventDetails,StyledInput,AddEventToEvents,AddEventButton,StyledSpan,DeleteButton,EditButton} from './styledComponent.js';
-import eventStore from '../../../stores/Store/EventStore/eventStore.js';
 import {observer} from 'mobx-react';
+import eventStore from '../../../stores/Store/EventStore/eventStore';
+import EventModel from '../../../stores/Model/EventModel/eventModel';
+import {StyledEventContainer,EventDetails,StyledInput,AddEventToEvents,AddEventButton,StyledSpan,DeleteButton,EditButton} from './styledComponent';
+
+
+type EventProps = {
+    isEventUpdate: Function,
+    onUpdateEventName: Function,
+    onUpdateEventLocation: Function,
+    onDeleteEvent: Function
+    EventModel: EventModel
+}
 
 @observer
-class Event extends React.Component {
+class Event extends React.Component<EventProps> {
     
     isUpdate = () => {
         const {isEventUpdate} = this.props.eachEvent;

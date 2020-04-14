@@ -1,5 +1,5 @@
 import React from 'react';
-import {HeaderContainer,H1,ScoreCard,Score,TopScore,Theme,P} from './styledComponent.js';
+import {HeaderContainer,H1,ScoreCard,Score,TopScore,Theme,P} from './styledComponent';
 
 class HeaderSection extends React.Component{
     

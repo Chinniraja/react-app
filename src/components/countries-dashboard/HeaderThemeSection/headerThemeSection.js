@@ -1,6 +1,6 @@
 import React from 'react';
-import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual.js';
-import {HeaderContainer,Theme,H3,Span} from './styledComponent.js';
+import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual';
+import {HeaderContainer,Theme,H3,Span} from './styledComponent';
 
 class HeaderThemeSection extends React.Component{
     

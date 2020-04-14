@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledEmojiCard,StyledButton,StyledName,StyledImage} from './styledComponent.js';
+import {StyledEmojiCard,StyledButton,StyledName,StyledImage} from './styledComponent';
 
 class EmojiCard extends React.Component{
     

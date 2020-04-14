@@ -2,8 +2,8 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import './CountriesDashboardApp.css';
-import CountryDetailsCard from './CountryDetailsCard/countryDetailsCard.js';
-import {Loading,CountriesDetailsContainer,BorderCountriesButton} from './styledComponent.js';
+import CountryDetailsCard from './CountryDetailsCard/countryDetailsCard';
+import {Loading,CountriesDetailsContainer,BorderCountriesButton} from './styledComponent';
 
 
 class ShowCountryDetails extends React.Component{

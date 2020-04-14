@@ -1,5 +1,12 @@
 import {observable,action,computed} from 'mobx';
-import EventModel from '../../Model/EventModel/eventModel.js';
+import EventModel from '../../Model/EventModel/eventModel';
+
+type eventModel = {
+    EventModel:EventModel,
+    eventName: string,
+    eventLocation: string,
+    eventList: Array<EventModel>
+}
 
 class EventStore {
     @observable eventName
@@ -24,7 +31,7 @@ class EventStore {
     
     @action.bound
     onAddEvent(){
-        if(this.eventName !== '' && this.eventLocation != ''){
+        if(this.eventName !== '' && this.eventLocation !== ''){
             const id = this.eventsCount + 1;
             const eventModel = new EventModel({id,eventName:this.eventName,eventLocation:this.eventLocation,isUpdate:false});
             this.eventsList.push(eventModel);

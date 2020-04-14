@@ -1,7 +1,9 @@
 import React from 'react';
-import {StyledEventsContainer} from './styledComponent.js';
-import eventStore from '../../../stores/Store/EventStore/eventStore.js';
-import Event from '../Event/event.js';
+
+import eventStore from '../../../stores/Store/EventStore/eventStore';
+import Event from '../Event/event';
+import {StyledEventsContainer} from './styledComponent';
+
 
 class RenderEvents extends React.Component {
     
@@ -11,7 +13,7 @@ class RenderEvents extends React.Component {
             <StyledEventsContainer>
                 <strong>Number of Events: {eventsCount}</strong>
                 {
-                    eventStore.eventsList.map(eachEvent => {
+                    eventStore.eventsList.map((eachEvent) => {
                         return <Event eachEvent={eachEvent} key={eachEvent.id}/>;
                     })
                 }

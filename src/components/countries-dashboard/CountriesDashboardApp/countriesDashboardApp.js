@@ -1,9 +1,9 @@
 /*global fetch*/
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import RenderCountries from '../RenderCountries/renderCountries.js';
-import FilterCountriesByRegionOrCountry from '../FilterCountriesByRegionOrCountry/filterCountriesByRegionOrCountry.js';
-import {DashboardContainer,Loading} from './styledComponent.js';
+import RenderCountries from '../RenderCountries/renderCountries';
+import FilterCountriesByRegionOrCountry from '../FilterCountriesByRegionOrCountry/filterCountriesByRegionOrCountry';
+import {DashboardContainer,Loading} from './styledComponent';
 
 class CountriesDashboardApp extends React.Component{
     state = {

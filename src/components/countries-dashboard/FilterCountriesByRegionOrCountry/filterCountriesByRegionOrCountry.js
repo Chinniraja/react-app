@@ -1,6 +1,6 @@
 import React from 'react';
-import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual.js';
-import {FilteredCountriesSection,SearchCountry,Select,I,Input,SearchIcon} from './styledComponent.js';
+import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual';
+import {FilteredCountriesSection,SearchCountry,Select,I,Input,SearchIcon} from './styledComponent';
 
 
 class FilterCountriesByRegionOrCountry extends React.Component {

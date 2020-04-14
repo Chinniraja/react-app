@@ -1,6 +1,6 @@
 import React from 'react';
-import EmojiCard from '../EmojiCard/emojiCard.js';
-import {EmojisContainer,H1,Message,TryAgain,ResultContainer} from './styledComponent.js';
+import EmojiCard from '../EmojiCard/emojiCard';
+import {EmojisContainer,H1,Message,TryAgain,ResultContainer} from './styledComponent';
 
 class RenderEmojis extends React.Component{
     

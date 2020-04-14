@@ -1,6 +1,6 @@
 import {observable,computed,action,reaction} from 'mobx';
 import {observer} from 'mobx-react';
-import TodoModel from '../../Model/TodoModel/todoModel.js';
+import TodoModel from '../../Model/TodoModel/todoModel';
 
 // @observer
 class TodoStore{

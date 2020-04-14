@@ -16,7 +16,7 @@ class A extends React.Component{
 @inject("temp")
 @observer
 class B extends React.Component{
-    @observable name=""
+    @observable name="value"
     
     onChange = (event) => {
         this.name = event.target.value;

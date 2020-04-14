@@ -1,11 +1,11 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import {reaction} from 'mobx';
-import TodoList from '../TodoList/todoList.js';
-import TodoFooter from '../TodoFooter/todoFooter.js';
-import AddTodo from '../AddTodo/addTodo.js';
-import {StyledTodoAppContainer,StyledTodoApp,Header} from './styledComponent.js';
-import todoStore from '../../../stores/Store/TodoStore/todoStore.js';
+import todoStore from '../../../stores/Store/TodoStore/todoStore';
+import TodoList from '../TodoList/todoList';
+import TodoFooter from '../TodoFooter/todoFooter';
+import AddTodo from '../AddTodo/addTodo';
+import {StyledTodoAppContainer,StyledTodoApp,Header} from './styledComponent';
 
 @observer
 class MobxTodoApp extends React.Component {

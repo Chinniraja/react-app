@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer} from 'mobx-react';
 
-import stores from '../../stores/Store/CounterStore/index.js';
-const counterStore = stores.counterStore;
+import counterStore from '../../stores/Store/CounterStore/index';
 
-type Props = {
-  initialCount: number
-}
+// const counterStore = counterStore;
+
 
 @observer
-class CounterPage extends Component<Props> {
-  functionCalling
+class CounterPage extends Component {
+  //functionCalling
 
   handleIncrement = () => {
     counterStore.incrementCounter();
   }
 
   handleDecrement = () => {
-    if (counterStore.count !== 0) {
+    const {count} = counterStore;
+    if (count !== 0) {
       counterStore.decrementCounter();
     }
   }

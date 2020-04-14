@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyledTodoListContainer} from './styledComponent.js';
-import Todo from '../Todo/todo.js';
+import Todo from '../Todo/todo';
+import {StyledTodoListContainer} from './styledComponent';
 
 class TodoList extends React.Component {
     

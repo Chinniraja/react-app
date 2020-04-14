@@ -1,28 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
 import {observer} from 'mobx-react';
+// import {configure} from 'mobx';
 
-import {AddNewTodo} from "./components/todos-app/todos-component.js";
+import {AddNewTodo} from "./components/todos-app/todos-component";
 // import "./components/todos-app/todos.css";
 // import './components/my-first-node/node.css';
 //import './components/countries-dashboard/CountriesDashboardApp.css';
-import FormComponents from './components/my-first-node/form-component.js';
-import {ParentCounter} from './components/practice/react-practice.js';
-import CountriesDashboardApp from './components/countries-dashboard/CountriesDashboardApp/countriesDashboardApp.js';
-import ShowCountryDetails from './components/countries-dashboard/ShowCountryDetails/showCountryDetails.js';
-import HeaderThemeSection from './components/countries-dashboard/HeaderThemeSection/headerThemeSection.js';
+import FormComponents from './components/my-first-node/form-component';
+import {ParentCounter} from './components/practice/react-practice';
+import CountriesDashboardApp from './components/countries-dashboard/CountriesDashboardApp/countriesDashboardApp';
+import ShowCountryDetails from './components/countries-dashboard/ShowCountryDetails/showCountryDetails';
+import HeaderThemeSection from './components/countries-dashboard/HeaderThemeSection/headerThemeSection';
 import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
 import "./App.css";
-import {CountriesDashboardConatiner} from './components/countries-dashboard/App/styledComponent.js';
-import GameDashboard from './components/EmojiGame/GameDashboard/gameDashboard.js';
-import CounterPage from './components/CounterPage/index.js';
+import {CountriesDashboardConatiner} from './components/countries-dashboard/App/styledComponent';
+import GameDashboard from './components/EmojiGame/GameDashboard/gameDashboard';
+import CounterPage from './components/CounterPage/index';
 import themeStore from './stores/Store/ThemeStore/';
-import CounterApp from './components/CounterApp/counterApp.js';
-import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/mobxTodoApp.js';
-import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard.js'
-import A from './components/ProviderInject/A/a.js';
-// import {configure} from 'mobx';
+import CounterApp from './components/CounterApp/counterApp';
+import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/mobxTodoApp';
+import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard';
+import A from './components/ProviderInject/A/a';
+
 
 // configure({ enforceActions: true});
 
@@ -150,11 +151,3 @@ class App extends React.Component {
 
 
 export default App;
-
-
-{/*color={mode.name}*/} 
-{/*color={mode.name}
-color={mode.name}
-color={mode.name}
-color={mode.name}
-*/}

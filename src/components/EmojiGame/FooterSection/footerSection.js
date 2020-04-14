@@ -1,6 +1,6 @@
 import React from 'react';
-// import shallowEqual from '../../../../..//portfolio-website/react/my-app/node_modules/@babel/types/lib/utils/shallowEqual.js';
-import {StyledFooterContainer,H1,StyledInstructions} from './styledComponent.js';
+// import shallowEqual from '../../../../..//portfolio-website/react/my-app/node_modules/@babel/types/lib/utils/shallowEqual';
+import {StyledFooterContainer,H1,StyledInstructions} from './styledComponent';
 import shallowCompare from 'react-addons-shallow-compare';
 class FooterSection extends React.Component{
     shouldComponentUpdate(nextProps,nextState){
