@@ -3,13 +3,9 @@ import { observer} from 'mobx-react';
 
 import counterStore from '../../stores/Store/CounterStore/index';
 
-// const counterStore = counterStore;
-
 
 @observer
 class CounterPage extends Component {
-  //functionCalling
-
   handleIncrement = () => {
     counterStore.incrementCounter();
   }

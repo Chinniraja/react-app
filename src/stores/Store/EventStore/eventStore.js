@@ -1,13 +1,6 @@
 import {observable,action,computed} from 'mobx';
 import EventModel from '../../Model/EventModel/eventModel';
 
-type eventModel = {
-    EventModel:EventModel,
-    eventName: string,
-    eventLocation: string,
-    eventList: Array<EventModel>
-}
-
 class EventStore {
     @observable eventName
     @observable eventLocation
