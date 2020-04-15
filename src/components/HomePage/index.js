@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <Link to="/grid-game">Grid Game</Link>
         <Link to="/page-1">Page 1</Link>
         <ul className="home-page">
       

@@ -23,7 +23,7 @@ import CounterApp from './components/CounterApp/counterApp';
 import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/mobxTodoApp';
 import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard';
 import A from './components/ProviderInject/A/a';
-
+import GridGameDashboard from './components/GridGame/GameDashboard/gameDashboard';
 
 // configure({ enforceActions: true});
 
@@ -75,6 +75,10 @@ class App extends React.Component {
         <Switch>
           <Route  path="/counter-page">
             <CounterPage />
+          </Route>
+          
+          <Route  path="/grid-game">
+            <GridGameDashboard />
           </Route>
           
           <Route  path="/provider-inject">
