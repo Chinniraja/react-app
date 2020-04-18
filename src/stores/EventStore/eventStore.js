@@ -1,5 +1,5 @@
 import {observable,action,computed} from 'mobx';
-import EventModel from '../../Model/EventModel/eventModel';
+import EventModel from '../Model/EventModel/eventModel';
 
 class EventStore {
     @observable eventName

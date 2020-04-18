@@ -18,12 +18,12 @@ import "./App.css";
 import {CountriesDashboardConatiner} from './components/countries-dashboard/App/styledComponent';
 import GameDashboard from './components/EmojiGame/GameDashboard/gameDashboard';
 import CounterPage from './components/CounterPage/index';
-import themeStore from './stores/Store/ThemeStore/';
+import themeStore from './stores/ThemeStore/';
 import CounterApp from './components/CounterApp/counterApp';
 import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/mobxTodoApp';
 import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard';
 import A from './components/ProviderInject/A/a';
-import GridGameDashboard from './components/GridGame/GameDashboard/gameDashboard';
+import GridGameDashboard from './components/GridGame/GameDashboard/index';
 
 // configure({ enforceActions: true});
 
@@ -37,14 +37,14 @@ class App extends React.Component {
     themeStore.setCurrentTheme();
   }
   
-  // changeTheme = () => {
-  //   if(this.getCurrentTheme() === 'light'){
-  //     this.setCurrentTheme('dark');
-  //   }
-  //   else{
-  //     this.setCurrentTheme('light');
-  //   }
-  // }
+  changeTheme = () => {
+    if(this.getCurrentTheme() === 'light'){
+      this.setCurrentTheme('dark');
+    }
+    else{
+      this.setCurrentTheme('light');
+    }
+  }
   
   // state={
   //   selectedTheme:'Light Mode',
@@ -73,13 +73,14 @@ class App extends React.Component {
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
+          <Route  path="/grid-game">
+            <GridGameDashboard />
+          </Route>
+          
           <Route  path="/counter-page">
             <CounterPage />
           </Route>
           
-          <Route  path="/grid-game">
-            <GridGameDashboard />
-          </Route>
           
           <Route  path="/provider-inject">
             <A />

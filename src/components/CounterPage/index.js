@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer} from 'mobx-react';
 
-import counterStore from '../../stores/Store/CounterStore/index';
+import counterStore from '../../stores/CounterStore/index';
 
 
 @observer

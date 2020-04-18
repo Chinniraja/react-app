@@ -1,6 +1,6 @@
 import React from 'react';
 
-import eventStore from '../../../stores/Store/EventStore/eventStore';
+import eventStore from '../../../stores/EventStore/eventStore';
 import Event from '../Event/event';
 import {StyledEventsContainer} from './styledComponent';
 

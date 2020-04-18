@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import eventStore from '../../../stores/Store/EventStore/eventStore';
+import eventStore from '../../../stores/EventStore/eventStore';
 import {StyledAddEventContainer,EventDetails,StyledInput,AddEventToEvents,AddEventButton} from './styledComponent';
 
 @observer

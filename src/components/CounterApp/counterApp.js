@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 // import {configure} from 'mobx';
 
-import counterStateStore from '../../stores/Store/CounterStateStore/';
+import counterStateStore from '../../stores/CounterStateStore/';
 import {StyledCounterContainer,Button,Input,Header,Counter} from './styledComponent';
 
 

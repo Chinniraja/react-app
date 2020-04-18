@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 
-import eventStore from '../../../stores/Store/EventStore/eventStore';
+import eventStore from '../../../stores/EventStore/eventStore';
 import AddEvent from '../AddEvent/addEvent';
 import RenderEvents from '../RenderEvents/renderEvents';
 import  {StyledEventsDashboardContainer,Header} from './styledComponent';
