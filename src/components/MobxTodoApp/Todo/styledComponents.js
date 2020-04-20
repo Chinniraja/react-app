@@ -7,10 +7,14 @@ const StyledTodo = styled.div`
 `;
 
 const CheckboxInput = styled.input`
-    ${tw`rounded-full h-12 w-16 ml-1 mr-0`}
+    ${tw`rounded-full h-12 w-12`}
     :checked{
         background-color: green;
     }
+`;
+
+const StyledCheckboxContainer = styled.div`
+    ${tw`w-16 h-16 flex flex-col justify-center items-center`}
 `;
 
 const TodoInput = styled.input`
@@ -24,4 +28,4 @@ const Span = styled.span`
     ${tw`h-16 w-16 text-center flex justify-center items-center text-red-400 text-2xl`}
 `;
 
-export {StyledTodo,CheckboxInput,TodoInput,Span};
+export {StyledTodo,CheckboxInput,TodoInput,Span,StyledCheckboxContainer};

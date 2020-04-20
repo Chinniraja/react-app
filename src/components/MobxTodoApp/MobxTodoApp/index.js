@@ -10,15 +10,21 @@ import {StyledTodoAppContainer,StyledTodoApp,Header,StyledNetworkError,StyledErr
 
 @observer
 class MobxTodoApp extends Component {
-    @observable responseCode
+    @observable responseCode = 400
+    dataFetching = true
     async componentDidMount(){
-        const todosData = await fetch("https://todo-list-1.getsandbox.com/todos");
+        this.getDataFromServer();
+    }
+    
+    async getDataFromServer(){
+        this.dataFetching = true;
+        const todosData = await fetch("https://jsonplaceholder.typicode.com/todos");
         this.responseCode = todosData.status;
-        console.log(todosData.status);
-        const data = await todosData.json();
+        const data =  await todosData.json();
         const id = setTimeout(() => {
             const {setInitialTodosData} = todoStore;
             setInitialTodosData(data);
+            this.dataFetching = false;
             clearTimeout(id);
         },2000);
     }
@@ -57,17 +63,21 @@ class MobxTodoApp extends Component {
     //     console.log("todos count",length);
     // })
     
+    tryAganin = () => {
+        this.getDataFromServer();
+    }
+    
     
     render() {
         const todos = this.getFilteredTodos();
         const length = todoStore.todosCount;
-        if(this.responseCode >= 400 && this.responseCode <= 400){
+        if(!window.navigator.onLine){
             return (
                 <StyledNetworkError>
                     <StyledErrorMessage>
                         {`Network Error`}
                     </StyledErrorMessage>
-                    <StyledTryAgainButton>{`Try Again`}</StyledTryAgainButton>
+                    <StyledTryAgainButton onClick={this.tryAganin}>{`Try Again`}</StyledTryAgainButton>
                 </StyledNetworkError>
             );
         }
@@ -77,7 +87,7 @@ class MobxTodoApp extends Component {
                     <Header>todos</Header>
                     <StyledTodoAppContainer>
                         <AddTodo onAddTodo={this.onAddTodo} todos={todos}></AddTodo>
-                        <TodoList responseCode={this.responseCode} todos={todos} onCompleteTodo={this.onCompleteTodo} onRemoveTodo={this.onRemoveTodo} onUpdateTodoTitle={this.onUpdateTodoTitle}></TodoList>
+                        <TodoList dataFetching={this.dataFetching} todos={todos} onCompleteTodo={this.onCompleteTodo} onRemoveTodo={this.onRemoveTodo} onUpdateTodoTitle={this.onUpdateTodoTitle}></TodoList>
                         {length > 0 && <TodoFooter todos={todos}  selectedFilter={todoStore.selectedFilter} onChangeSelectedFilter={this.onChangeSelectedFilter} onClearCompleted={this.onClearCompleted}/>}
                     </StyledTodoAppContainer>
                 </StyledTodoApp>

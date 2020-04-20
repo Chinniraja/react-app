@@ -11,13 +11,14 @@ class TodoModel {
         this.isCompleted = props.isCompleted;
     }
     
-    onCompleteTodo = () => {
-        if(this.isCompleted === false){
+    onCompleteTodo = (event) => {
+        if(!this.isCompleted){
             this.isCompleted = true;
         }
         else{
             this.isCompleted = false;
         }
+        
     }
     
     onUpdateTodoTitle = (event) => {

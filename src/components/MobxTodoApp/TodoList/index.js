@@ -14,7 +14,8 @@ class TodoList extends React.Component {
     }
     
     render() {
-        const {todos} = this.props;
+        const {todos,dataFetching} = this.props;
+        console.log(dataFetching,todos.length);
         if(todos.length){
             return (
                 <StyledTodoListContainer>
@@ -22,10 +23,17 @@ class TodoList extends React.Component {
                 </StyledTodoListContainer>
             );
         }
-        else{
+        else if(dataFetching){
             return (
                 <StyledLoading>
                     <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+                </StyledLoading>
+            );
+        }
+        else if(todos.length === 0){
+            return (
+                <StyledLoading>
+                    {`No Data Found`}
                 </StyledLoading>
             );
         }

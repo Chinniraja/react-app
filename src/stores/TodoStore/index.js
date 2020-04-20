@@ -23,8 +23,13 @@ class TodoStore{
     @action.bound
     setInitialTodosData(data){
         data.forEach(eachTodo => {
-            const todoModel = new TodoModel(eachTodo);
-            this.todos.push(todoModel);
+            if(eachTodo.userId === 1){
+                const isCompleted = eachTodo.completed;
+                delete eachTodo.completed;
+                eachTodo.isCompleted = isCompleted;
+                const todoModel = new TodoModel(eachTodo);
+                this.todos.push(todoModel);
+            }
         });
     }
     
@@ -76,9 +81,9 @@ class TodoStore{
         return updatedTodos;
     }
     
-    addTodoReaction = reaction(()=>{return (this.todos.map((todo) => todo.title))},(todoTitle)=>{
-        console.log("todos title",todoTitle);
-    })
+    // addTodoReaction = reaction(()=>{return (this.todos.map((todo) => todo.title))},(todoTitle)=>{
+    //     console.log("todos title",todoTitle);
+    // })
     
     @computed get todosCount(){
         return this.todos.length;
