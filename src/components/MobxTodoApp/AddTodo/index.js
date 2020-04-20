@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaAngleDown} from 'react-icons/fa';
-import {StyledAddTask,Input,DropDown} from './styledComponent';
+import {StyledAddTask,Input,DropDown} from './styledComponents';
 
 class AddTodo extends React.Component {
     render(){

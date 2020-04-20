@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import todoStore from '../../../stores/TodoStore/todoStore';
+import todoStore from '../../../stores/TodoStore/index';
 import {
     StyledFooterContainer,
     ActiveTodosCount,
@@ -10,7 +10,7 @@ import {
     Completed,
     ClearCompleted,
     StyledClearCompletedContainer
-} from './styledComponent';
+} from './styledComponents';
 
 @observer
 class TodoFooter extends React.Component{

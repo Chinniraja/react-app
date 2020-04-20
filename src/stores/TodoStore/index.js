@@ -1,6 +1,6 @@
 import {observable,computed,action,reaction} from 'mobx';
 import {observer} from 'mobx-react';
-import TodoModel from '../Model/TodoModel/todoModel';
+import TodoModel from '../Model/TodoModel/index';
 
 // @observer
 class TodoStore{
@@ -18,6 +18,14 @@ class TodoStore{
             todos.push(todoModel);
             event.target.value = '';
         }
+    }
+    
+    @action.bound
+    setInitialTodosData(data){
+        data.forEach(eachTodo => {
+            const todoModel = new TodoModel(eachTodo);
+            this.todos.push(todoModel);
+        });
     }
     
     @action.bound

@@ -20,7 +20,7 @@ import GameDashboard from './components/EmojiGame/GameDashboard/gameDashboard';
 import CounterPage from './components/CounterPage/index';
 import themeStore from './stores/ThemeStore/';
 import CounterApp from './components/CounterApp/counterApp';
-import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/mobxTodoApp';
+import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/index';
 import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard';
 import A from './components/ProviderInject/A/a';
 import GridGameDashboard from './components/GridGame/GameDashboard/index';
