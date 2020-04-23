@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
 import {observer} from 'mobx-react';
+import {Provider} from 'mobx-react';
 // import {configure} from 'mobx';
 
 import {AddNewTodo} from "./components/todos-app/todos-component";
@@ -24,6 +25,8 @@ import MobxTodoApp from './components/MobxTodoApp/MobxTodoApp/index';
 import EventsDashboard from './components/EventsList/EventsDashboard/eventsDashboard';
 import A from './components/ProviderInject/A/a';
 import GridGameDashboard from './components/GridGame/GameDashboard/index';
+import userPage from './components/UsersPage/index';
+import stores from './stores';
 
 // configure({ enforceActions: true});
 
@@ -71,11 +74,17 @@ class App extends React.Component {
     // const {theme} = this.state;
     // const mode = this.state.themeOption[theme];
     return (
+      <Provider {...stores}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route  path="/grid-game">
             <GridGameDashboard />
           </Route>
+          
+          <Route exact path="/mobx-todo-app" component={MobxTodoApp}/>
+    
+          
+          <Route  exact path="/users" component={userPage}/>
           
           <Route  path="/counter-page">
             <CounterPage />
@@ -89,12 +98,7 @@ class App extends React.Component {
           <Route  path="/event-dashboard">
             <EventsDashboard />
           </Route>
-          
-          
-          <Route  path="/mobx-todo-app">
-            <MobxTodoApp />
-          </Route>
-          
+  
           
           <Route  path="/counter-app">
             <CounterApp />
@@ -150,6 +154,7 @@ class App extends React.Component {
           </Route>
         </Switch>
       </Router>
+      </Provider>
     );
   }
 }

@@ -18,9 +18,14 @@ function App() {
         >
           Learn React
         </a>
+        
         <Link to="/grid-game">Grid Game</Link>
+        <Link to="/users">Users</Link>
         <Link to="/page-1">Page 1</Link>
         <ul className="home-page">
+      <li>
+        <Link to="/mobx-todo-app">Todo App</Link>
+      </li>
       
       <li>
         <Link to="/provider-inject">Provider Inject</Link>
@@ -34,9 +39,6 @@ function App() {
         <Link to="/home">Home</Link>
       </li>
       
-      <li>
-        <Link to="/mobx-todo-app">Todo App</Link>
-      </li>
       
       <li>
         <Link to="/parent-counter">ParentCounter</Link>

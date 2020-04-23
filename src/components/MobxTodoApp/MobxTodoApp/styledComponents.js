@@ -10,7 +10,9 @@ const StyledTodoApp = styled.div`
 `;
 
 const Header = styled.h1`
-    ${tw`text-6xl text-red-200 items-center my-12`}
+    ${tw`text-base text-red-200 items-center my-12`};
+    font-size: 100px;
+    font-weight: none;
 `;
 
 const StyledNetworkError = styled.div`

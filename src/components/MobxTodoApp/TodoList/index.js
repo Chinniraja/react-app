@@ -1,42 +1,43 @@
 import React from 'react';
-import Loader from 'react-loader-spinner';
+import {observer,inject} from 'mobx-react';
+import NoDataView from '../../common/NoDataView/index';
 import Todo from '../Todo/index';
-import {StyledTodoListContainer,StyledLoading,} from './styledComponents';
+import {StyledTodoListContainer} from './styledComponents';
 
+@inject("todosStore")
+@observer
 class TodoList extends React.Component {
-    
-    renderTodosList = () => {
-        const {todos,onRemoveTodo} = this.props;
-        const todosList = todos.map(eachTodo => {
-            return <Todo eachTodo={eachTodo} key={eachTodo.id} onRemoveTodo={onRemoveTodo}/>;
-        });
-        return todosList;
+    getFilteredTodos = (todos,selectedFilter) => {
+        let updatedTodos;
+        if(selectedFilter === 'All'){
+            updatedTodos = todos.filter(eachTodo => {
+                return eachTodo;
+            });
+        }
+        else if(selectedFilter === 'Active'){
+            updatedTodos = todos.filter(eachTodo => {
+                return (eachTodo.isCompleted === false);
+            });
+        }
+        else if(selectedFilter === 'Completed'){
+            updatedTodos = todos.filter(eachTodo => {
+                return eachTodo.isCompleted === true;
+            });
+        }
+        return updatedTodos;
     }
     
     render() {
-        const {todos,dataFetching} = this.props;
-        console.log(dataFetching,todos.length);
-        if(todos.length){
-            return (
-                <StyledTodoListContainer>
-                    {this.renderTodosList()}
-                </StyledTodoListContainer>
-            );
-        }
-        else if(dataFetching){
-            return (
-                <StyledLoading>
-                    <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
-                </StyledLoading>
-            );
-        }
-        else if(todos.length === 0){
-            return (
-                <StyledLoading>
-                    {`No Data Found`}
-                </StyledLoading>
-            );
-        }
+        // console.log("todoslist render");
+        const {todos,selectedFilter,onRemoveTodo} = this.props.todosStore;
+        const updatedTodos = this.getFilteredTodos(todos,selectedFilter);
+        return (
+            <StyledTodoListContainer>
+                {updatedTodos.map(eachTodo => {
+                    return <Todo eachTodo={eachTodo} key={eachTodo.id} onRemoveTodo={onRemoveTodo}/>;
+                })}
+            </StyledTodoListContainer>
+        );
     }
 }
 

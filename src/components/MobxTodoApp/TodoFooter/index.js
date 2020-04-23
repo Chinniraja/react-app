@@ -1,6 +1,6 @@
 import React from 'react';
-import {observer} from 'mobx-react';
-import todoStore from '../../../stores/TodoStore/index';
+import {observer,inject} from 'mobx-react';
+import NoDataView from '../../common/NoDataView/index';
 import {
     StyledFooterContainer,
     ActiveTodosCount,
@@ -12,17 +12,20 @@ import {
     StyledClearCompletedContainer
 } from './styledComponents';
 
+@inject("todosStore")
 @observer
 class TodoFooter extends React.Component{
     
     completedTodos =() => {
-        const completedTodosCount = todoStore.todosCount - todoStore.getActiveTodosCount();
+        const {todosStore} = this.props;
+        const {todosCount,getActiveTodosCount} = todosStore;
+        const completedTodosCount = todosCount - getActiveTodosCount();
         return completedTodosCount;
     }
     
     activeTodos = () => {
         let activeTodos = 0;
-        const {todos} = this.props;
+        const {todos} = this.props.todosStore;
         todos.forEach(eachTodo => {
             if(eachTodo.isCompleted === false){
               activeTodos++;
@@ -31,14 +34,9 @@ class TodoFooter extends React.Component{
         return activeTodos;
     }
     
-    // getActiveTodosCount = () => {
-    //     const {getActiveTodosCount} = todoStore;
-    //     return getActiveTodosCount();
-    // }
-    
     render(){
-        const {onChangeSelectedFilter,onClearCompleted} = this.props;
-        const {selectedFilter} = todoStore;
+        const {todos,onChangeSelectedFilter,onClearCompleted} = this.props.todosStore;
+        const {selectedFilter} = this.props.todosStore;
         const activeTodosCount = this.activeTodos();
         const completedTodosCount = this.completedTodos();
         return (

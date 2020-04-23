@@ -1,9 +1,9 @@
 import {observable} from 'mobx';
 
 class TodoModel {
-    @observable id;
+    id
     @observable title
-    @observable isCompleted;
+    @observable isCompleted
     
     constructor(props) {
         this.id = props.id;
@@ -12,13 +12,7 @@ class TodoModel {
     }
     
     onCompleteTodo = (event) => {
-        if(!this.isCompleted){
-            this.isCompleted = true;
-        }
-        else{
-            this.isCompleted = false;
-        }
-        
+        this.isCompleted = !this.isCompleted;
     }
     
     onUpdateTodoTitle = (event) => {

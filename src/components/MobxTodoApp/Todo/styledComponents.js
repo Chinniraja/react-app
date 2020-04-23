@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
-const StyledTodo = styled.div`
+const StyledTodo = styled.li`
     ${tw`flex justify-center items-center w-full shadow`}
     
 `;

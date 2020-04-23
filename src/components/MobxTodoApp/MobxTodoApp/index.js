@@ -1,61 +1,38 @@
-/*global fetch */
 import React,{Component} from 'react';
-import {observer} from 'mobx-react';
-import {reaction,observable} from 'mobx';
-import todoStore from '../../../stores/TodoStore/index';
+import {observer,inject} from 'mobx-react';
 import TodoList from '../TodoList/index';
 import TodoFooter from '../TodoFooter/index';
 import AddTodo from '../AddTodo/index';
-import {StyledTodoAppContainer,StyledTodoApp,Header,StyledNetworkError,StyledErrorMessage,StyledTryAgainButton} from './styledComponents';
+import NoDataView from '../../common/NoDataView/index';
+import {StyledTodoAppContainer,StyledTodoApp,Header} from './styledComponents';
+import LoadingWrapperWithFailure from '../../common/LoadingWrapperWithFailure/index';
 
+@inject("todosStore")
 @observer
 class MobxTodoApp extends Component {
-    @observable responseCode = 400
-    dataFetching = true
-    async componentDidMount(){
-        this.getDataFromServer();
-    }
-    
-    async getDataFromServer(){
-        this.dataFetching = true;
-        const todosData = await fetch("https://jsonplaceholder.typicode.com/todos");
-        this.responseCode = todosData.status;
-        const data =  await todosData.json();
-        const id = setTimeout(() => {
-            const {setInitialTodosData} = todoStore;
-            setInitialTodosData(data);
-            this.dataFetching = false;
-            clearTimeout(id);
-        },2000);
-    }
     
     onAddTodo = (event) => {
-        const {onAddTodo} = todoStore;
+        const {onAddTodo} = this.props.todosStore;
         onAddTodo(event);
     }
     
     onRemoveTodo = (event) => {
-        const {onRemoveTodo} = todoStore;
+        const {onRemoveTodo} = this.props.todosStore;
         onRemoveTodo(event);
     }
     
     onChangeSelectedFilter = (event) => {
-        const {onChangeSelectedFilter} = todoStore;
+        const {onChangeSelectedFilter} = this.props.todosStore;
         onChangeSelectedFilter(event);
     }
     
-    onClearCompleted = () => {
-        const {onClearCompleted} = todoStore;
-        onClearCompleted();
-    }
-    
     getActiveTodosCount = () => {
-        const {getActiveTodosCount} = todoStore;
+        const {getActiveTodosCount} = this.props.todosStore;
         return getActiveTodosCount();
     }
     
     getFilteredTodos = () => {
-        const {getFilteredTodos} = todoStore;
+        const {getFilteredTodos} = this.props.todosStore;
         return getFilteredTodos();
     }
     
@@ -63,36 +40,44 @@ class MobxTodoApp extends Component {
     //     console.log("todos count",length);
     // })
     
-    tryAganin = () => {
-        this.getDataFromServer();
+    componentDidMount(){
+        this.doNetworkCalls();
+    }
+    
+    doNetworkCalls = () => {
+        this.props.todosStore.getTodos();
+    }
+    
+    componentWillUnmount(){
+        this.props.todosStore.clearStore();
+    }
+    
+    renderTodosList = () => {
+        const {todos,selectedFilter} = this.props.todosStore;
+        return ( 
+            <StyledTodoApp>
+                <Header>todos</Header>
+                <StyledTodoAppContainer>
+                    <AddTodo onAddTodo={this.onAddTodo} todos={todos}></AddTodo>
+                    {todos.length > 0 && <TodoList todos={todos} onRemoveTodo={this.onRemoveTodo}></TodoList>}
+                    {todos.length > 0 && <TodoFooter todos={todos}  selectedFilter={selectedFilter} onChangeSelectedFilter={this.onChangeSelectedFilter}/>}
+                </StyledTodoAppContainer>
+            </StyledTodoApp>
+        );
     }
     
     
     render() {
-        const todos = this.getFilteredTodos();
-        const length = todoStore.todosCount;
-        if(!window.navigator.onLine){
-            return (
-                <StyledNetworkError>
-                    <StyledErrorMessage>
-                        {`Network Error`}
-                    </StyledErrorMessage>
-                    <StyledTryAgainButton onClick={this.tryAganin}>{`Try Again`}</StyledTryAgainButton>
-                </StyledNetworkError>
-            );
-        }
-        else{
-            return (
-                <StyledTodoApp>
-                    <Header>todos</Header>
-                    <StyledTodoAppContainer>
-                        <AddTodo onAddTodo={this.onAddTodo} todos={todos}></AddTodo>
-                        <TodoList dataFetching={this.dataFetching} todos={todos} onCompleteTodo={this.onCompleteTodo} onRemoveTodo={this.onRemoveTodo} onUpdateTodoTitle={this.onUpdateTodoTitle}></TodoList>
-                        {length > 0 && <TodoFooter todos={todos}  selectedFilter={todoStore.selectedFilter} onChangeSelectedFilter={this.onChangeSelectedFilter} onClearCompleted={this.onClearCompleted}/>}
-                    </StyledTodoAppContainer>
-                </StyledTodoApp>
-            );
-        }
+        const {getTodosApiStatus,getTodosApiError} = this.props.todosStore;
+        console.log(this.props.todosStore.todos);
+        return (
+            <LoadingWrapperWithFailure
+                apiStatus={getTodosApiStatus}
+                apiError={getTodosApiError}
+                onRetryClick={this.doNetworkCalls}
+                renderSuccessUI={this.renderTodosList}
+            />    
+        );
     }
 }
 
