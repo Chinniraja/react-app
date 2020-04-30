@@ -26,7 +26,11 @@ class SignInForm extends Component{
             getToken(this.userName,this.password);
             this.isSubmit = !this.isSubmit;
             setTimeout(()=> {
-                this.props.history.push('/ecommerce-store/products');
+                return (
+                    <Redirect to={{
+                        pathname:'/ecommerce-store/products'
+                    }}/>
+                );
             },2000);
         }
     }

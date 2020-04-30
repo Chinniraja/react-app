@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {Redirect} from 'react-router-dom';
 import {observer,inject} from 'mobx-react';
 import Cart from '../Cart/index';
 import Header from '../ProductsHeader/index';
