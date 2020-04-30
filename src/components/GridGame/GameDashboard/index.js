@@ -1,10 +1,11 @@
 import React from 'react';
-import {observer} from 'mobx-react';
+import {observer,inject} from 'mobx-react';
 import gridStore from '../../../stores/GridStore/index';
 import GameArea from '../GameArea/index'; 
 import HeaderSection from '../HeaderSection/index';
-import {StyledDashboard} from './styledComponents';
+import {StyledDashboard,StyledButton} from './styledComponents';
 
+@inject("authStore")
 @observer
 class GridGameDashboard extends React.Component {
     
@@ -12,11 +13,16 @@ class GridGameDashboard extends React.Component {
         const {setGridCells} = gridStore;
         setGridCells();
     }
+    
+    signOut = () => {
+        this.props.authStore.authStore.clearToken();
+    }
 
     render(){
         const {level,topLevel,selectedTheme,onPlayAgainClick,currentLevelGridCells,incrementSelectedCellsCount,checkLevelStatus,isGameCompleted,changeTheme,minimumGridCells,selectedCellsCount,goToInitialLevelAndUpdateCells,goToNextLevelAndUpdateCells,onCellClicked} = gridStore;
         return (
             <StyledDashboard theme={selectedTheme}>
+                <StyledButton onClick={this.signOut}>{`Signout`}</StyledButton>
                 <HeaderSection 
                     level={level}
                     topLevel={topLevel}

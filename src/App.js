@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
-import {observer} from 'mobx-react';
+//import {observer} from 'mobx-react';
 import {Provider} from 'mobx-react';
-// import {configure} from 'mobx';
+//import {observable} from 'mobx';
 
 import {AddNewTodo} from "./components/todos-app/todos-component";
 // import "./components/todos-app/todos.css";
@@ -27,10 +27,12 @@ import A from './components/ProviderInject/A/a';
 import GridGameDashboard from './components/GridGame/GameDashboard/index';
 import userPage from './components/UsersPage/index';
 import stores from './stores';
-
+import SignInForm from './Authentication/components/SignInForm/index';
+import ecommerceRoutes from './E-Commerce-App/routes/ecommerceRoutes';
+import authenticationRoutes from './Authentication/routes/AuthenticationRoutes';
+import EcommerceDashboard from './E-Commerce-App/components/EcommerceDashboard/index';
 // configure({ enforceActions: true});
 
-@observer
 class App extends React.Component {
   getCurrentTheme = () => {
     return themeStore.selectedTheme;
@@ -77,6 +79,11 @@ class App extends React.Component {
       <Provider {...stores}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
+        <Route exact path="/projects">
+            <HomePage/>
+          </Route>
+          {authenticationRoutes}
+          {ecommerceRoutes}
           <Route  path="/grid-game">
             <GridGameDashboard />
           </Route>
@@ -139,7 +146,7 @@ class App extends React.Component {
             <GameDashboard />
           </Route>
           
-          <Route exact path="/:id" children=
+          <Route exact path="/countries" children=
             {
               <CountriesDashboardConatiner  selectedTheme={this.selectedTheme}>
                 <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={this.getCurrentTheme()} />
@@ -147,11 +154,10 @@ class App extends React.Component {
               </CountriesDashboardConatiner>
             }
           />
+        
+        
           
           
-          <Route path="/">
-            <HomePage />
-          </Route>
         </Switch>
       </Router>
       </Provider>

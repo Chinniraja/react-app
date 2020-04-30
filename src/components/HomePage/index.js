@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import logo from "../../logo.svg";
 
-function App() {
+class App extends React.Component {
+  render(){
   return (
     <div className="App">
       <header className="App-header">
@@ -23,6 +24,7 @@ function App() {
         <Link to="/users">Users</Link>
         <Link to="/page-1">Page 1</Link>
         <ul className="home-page">
+        
       <li>
         <Link to="/mobx-todo-app">Todo App</Link>
       </li>
@@ -34,11 +36,6 @@ function App() {
       <li>
         <Link to="/event-dashboard">Events List</Link>
       </li>
-      
-      <li>
-        <Link to="/home">Home</Link>
-      </li>
-      
       
       <li>
         <Link to="/parent-counter">ParentCounter</Link>
@@ -60,11 +57,16 @@ function App() {
       <li>
         <Link to="/counter-app">Counter App</Link>
       </li>
+      <li>
+        <Link to="/projects">Home</Link>
+      </li>
+      
       
     </ul>
+    
       </header>
     </div>
   );
 }
-
+}
 export default App;

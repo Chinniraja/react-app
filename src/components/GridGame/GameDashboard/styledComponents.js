@@ -7,4 +7,8 @@ const StyledDashboard = styled.div`
     color: ${props => props.theme === '#fff' ? 'black' : 'white'};
 `;
 
-export {StyledDashboard};
+const StyledButton = styled.div`
+    ${tw`h-12 w-20 bg-blue-600 rounded`}
+`;
+
+export {StyledDashboard,StyledButton};
