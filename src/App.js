@@ -29,7 +29,7 @@ import userPage from './components/UsersPage/index';
 import stores from './stores';
 import SignInForm from './Authentication/components/SignInForm/index';
 import ecommerceRoutes from './E-Commerce-App/routes/ecommerceRoutes';
-import authenticationRoutes from './Authentication/routes/AuthenticationRoutes';
+import {ProtectedRoute} from './Authentication/routes/AuthenticationRoutes';
 import EcommerceDashboard from './E-Commerce-App/components/EcommerceDashboard/index';
 // configure({ enforceActions: true});
 
@@ -82,8 +82,8 @@ class App extends React.Component {
         <Route exact path="/projects">
             <HomePage/>
           </Route>
-          {authenticationRoutes}
           {ecommerceRoutes}
+          <Route exact path="/" component={SignInForm}/>
           <Route  path="/grid-game">
             <GridGameDashboard />
           </Route>

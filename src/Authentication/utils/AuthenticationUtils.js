@@ -3,14 +3,14 @@ import {observer,inject} from 'mobx-react';
 import {Redirect,Route} from 'react-router-dom';
 
 const ProtectedRoute = inject("authStore")(observer(({component:Component,path,authStore,...rest}) => {
-    const {access_token} = authStore;
+    alert(authStore.access_token);
+    console.log(Component);
     return <Route {...rest} render={(props) => (
-    access_token !== undefined
-    ?   <Component/>
-    
-    :   <Redirect to={{
-            pathname:'/'
+    authStore.access_token !== undefined
+    ?   <Redirect to={{
+            pathname:'/ecommerce-store/products'
         }}/>
+    :   <Component/>
     )}/>;
 }));
 export {ProtectedRoute};

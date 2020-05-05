@@ -22,6 +22,7 @@ class ProductStore {
         this.productsList = [];
         this.selectedSize = [];
         this.sortByPrize = '';
+        this.searchText = '';
         this.getProductAPIStatus = API_FETCHING;
     }
     

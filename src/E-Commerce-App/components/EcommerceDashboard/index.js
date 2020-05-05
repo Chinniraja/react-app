@@ -12,9 +12,9 @@ import {StyledDashboard,StyledSelectSizeContainer,StyledSignOutButton,StyledProd
 class EcommerceDashboard extends Component{
     
     onSignOut = () => {
-        const {authStore:{clearToken}} = this.props;
+        const {authStore:{clearToken},productStore:{clearStore}} = this.props;
         clearToken();
-        this.props.history.replace('/');
+        clearStore();
     }
     
     render() {

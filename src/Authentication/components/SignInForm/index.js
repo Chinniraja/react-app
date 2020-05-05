@@ -21,16 +21,12 @@ class SignInForm extends Component{
     }
     
     onSubmit = () => {
-        const {authStore:{userName,password,getToken}} = this.props;
-        if(this.userName === userName && this.password === password){
-            getToken(this.userName,this.password);
+        const {authStore:{getToken}} = this.props;
+        if(this.userName !== '' && this.password !== ''){
+            getToken();
             this.isSubmit = !this.isSubmit;
             setTimeout(()=> {
-                return (
-                    <Redirect to={{
-                        pathname:'/ecommerce-store/products'
-                    }}/>
-                );
+                this.props.history.push('/ecommerce-store/products');
             },2000);
         }
     }

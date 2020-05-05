@@ -13,7 +13,7 @@ const StyledSizeDropDown = styled.select`
     ${tw`h-8`}
 `;
 
-const StyledText = styled.span`
+const StyledText = styled.label`
     ${tw`text-base mr-1 items-center`}
 `;
 
