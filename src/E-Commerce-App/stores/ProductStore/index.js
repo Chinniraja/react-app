@@ -36,10 +36,10 @@ class ProductStore {
     }
     
     @action.bound
-    filterBySize(event){
-        const index = this.selectedSize.indexOf(event.target.id);
+    filterBySize(eventId){
+        const index = this.selectedSize.indexOf(eventId);
         if(index === -1){
-            this.selectedSize.push(event.target.id);
+            this.selectedSize.push(eventId);
         }
         else{
             this.selectedSize.splice(index,1);
@@ -47,8 +47,8 @@ class ProductStore {
     }
     
     @action.bound
-    sortByPrice(event){
-        this.sortByPrize = event.currentTarget.value;
+    sortByPrice(value){
+        this.sortByPrize = value;
     }
     
     @action.bound
@@ -70,6 +70,7 @@ class ProductStore {
     @action.bound
     setProductAPIError(apiError){
         this.getProductAPIError = apiError;
+        console.log("asdf",apiError);
     }
     
     @action.bound

@@ -7,12 +7,12 @@ import {StyledCartListContainer,StyledContent} from './styledComponents';
 @observer
 class CartList extends Component{
     render() {
-        const {cartStore:{cartList}} = this.props;
+        const {cartStore:{cartList},onDeleteItem} = this.props;
         return (
             <StyledCartListContainer>
                 {
                     cartList.length > 0 ? cartList.map((eachItem) => {
-                        return <CartItem key={eachItem.id} eachItem={eachItem}/>;
+                        return <CartItem key={eachItem.id} eachItem={eachItem} onDeleteItem={onDeleteItem}/>;
                     }):
                     <StyledContent>
                     {`Add some products in the cart`}

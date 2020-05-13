@@ -31,8 +31,9 @@ import SignInForm from './Authentication/components/SignInForm/index';
 import ecommerceRoutes from './E-Commerce-App/routes/ecommerceRoutes';
 import {ProtectedRoute} from './Authentication/routes/AuthenticationRoutes';
 import EcommerceDashboard from './E-Commerce-App/components/EcommerceDashboard/index';
+import {SignInPageRoute} from './Authentication/routes/SignInPage/SignInPageRoute';
 // configure({ enforceActions: true});
-
+import CounterParent from './practice';
 class App extends React.Component {
   getCurrentTheme = () => {
     return themeStore.selectedTheme;
@@ -79,11 +80,11 @@ class App extends React.Component {
       <Provider {...stores}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-        <Route exact path="/projects">
+          <Route exact path="/projects">
             <HomePage/>
           </Route>
           {ecommerceRoutes}
-          <Route exact path="/" component={SignInForm}/>
+          <Route exact path="/" component={SignInPageRoute}/>
           <Route  path="/grid-game">
             <GridGameDashboard />
           </Route>
@@ -154,10 +155,6 @@ class App extends React.Component {
               </CountriesDashboardConatiner>
             }
           />
-        
-        
-          
-          
         </Switch>
       </Router>
       </Provider>

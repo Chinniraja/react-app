@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
 const StyledAuthenticationContainer = styled.div`
-    ${tw`w-64 h-64 flex flex-col m-auto border border-black justify-center items-center mt-20`}
+    ${tw`w-64 flex flex-col m-auto border border-black justify-center items-center mt-20`}
 `;
 
 const StyledUserInput = styled.input`
-    ${tw`w-9/12 h-12 border px-2 mb-2 rounded `};
+    ${tw`w-full h-12 border px-2 rounded `};
 `;
 
 const StyledUserPassword = styled.input`
-    ${tw`w-9/12 h-12 border px-2 mb-2 rounded`}
+    ${tw`w-full h-12 border px-2 rounded`}
 `;
 
 const StyledLoginButton = styled.button`
@@ -20,7 +20,22 @@ const StyledLoginButton = styled.button`
 
 
 const StyledHeader = styled.h1`
-    ${tw`text-base self-start ml-8 my-2 font-bold`}
+    ${tw`text-base self-start ml-8 my-4 font-bold`}
 `;
 
-export {StyledAuthenticationContainer,StyledUserInput,StyledUserPassword,StyledLoginButton,StyledHeader};
+const StyledPasswordInputError = styled.span`
+    ${tw`text-red-400 w-full`}
+    font-size: 14px;
+`;
+
+const StyledUserInputError = styled.span`
+    ${tw`text-red-400 w-full`}
+    font-size: 14px;
+`;
+
+const StyledInputFieldContainer = styled.div`
+    ${tw`w-9/12`}
+    height: 74px;
+`;
+
+export {StyledAuthenticationContainer,StyledUserInput,StyledInputFieldContainer,StyledUserPassword,StyledLoginButton,StyledHeader,StyledPasswordInputError,StyledUserInputError};

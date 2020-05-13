@@ -22,7 +22,7 @@ class CartItem extends Component {
                     <StyledQuatity>{`Quantity: ${quantity}`}</StyledQuatity>
                 </StyledItemDescription>
                 <StyledDeleteAndPriceContainer>
-                    <StyledDeleteButton onClick={this.onDeleteItemFromCart}>{`X`}</StyledDeleteButton>
+                    <StyledDeleteButton onClick={this.onDeleteItemFromCart} data-testid='remove-cart-item'>{`X`}</StyledDeleteButton>
                     <StyledPrice>{`${currencyFormat} ${price}`}</StyledPrice>
                 </StyledDeleteAndPriceContainer>
             </StyledCartItem>

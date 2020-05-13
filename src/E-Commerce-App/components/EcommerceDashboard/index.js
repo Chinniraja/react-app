@@ -19,7 +19,7 @@ class EcommerceDashboard extends Component{
     
     render() {
         return (
-            <StyledDashboard>
+            <StyledDashboard data-testid="ecommerce-store">
                 <StyledDashboardHeader>
                     <StyledSignOutButton onClick={this.onSignOut}>
                         {`Sign Out`}

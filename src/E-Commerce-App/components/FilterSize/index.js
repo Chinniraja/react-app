@@ -12,7 +12,7 @@ class SelectSize extends Component{
         const {productStore:{filterBySize}} = this.props;
         const selectedSize = this.sizes.find(eachSize => eachSize.size === event.target.id);
         selectedSize.isSelected = !selectedSize.isSelected;
-        filterBySize(event);
+        filterBySize(event.target.id);
     }
     
     render() {

@@ -25,7 +25,7 @@ class cartStore {
             this.cartList.push(itemModel);
         }
         else {
-            value.quantity += 1;
+            value.onIncrementQuantity();
         }
         this.quantity=this.productsCount;
     }
@@ -45,7 +45,7 @@ class cartStore {
     
     @action.bound 
     onCheckout(){
-        this.init();
+        this.clearStore();
         alert(
             `Thank you for shopping with us 😊.
             Your products will be delivered in 3 days to the address mentioned in your profile.`

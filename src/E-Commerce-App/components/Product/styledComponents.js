@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
 const StyledProductContainer = styled.div`
-    ${tw`flex flex-col justify-center mx-2 items-center mb-2`};
+    ${tw`flex flex-col justify-center mx-2 items-center mb-2 hover:border border-dotted border-black`};
     width: 200px;
 `;
 

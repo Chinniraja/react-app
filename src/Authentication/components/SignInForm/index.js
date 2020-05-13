@@ -1,42 +1,17 @@
 import React,{Component} from 'react';
+import {observer} from 'mobx-react';
 import {Redirect} from 'react-router-dom';
-import {observable} from 'mobx';
-import {observer,inject} from 'mobx-react';
 import Loader from 'react-loader-spinner';
-import {StyledAuthenticationContainer,StyledUserInput,StyledUserPassword,StyledLoginButton,StyledHeader} from './styledComponents';
+import {StyledAuthenticationContainer,StyledUserInputError,StyledInputFieldContainer,StyledPasswordInputError,StyledUserInput,StyledUserPassword,StyledLoginButton,StyledHeader} from './styledComponents';
 
-@inject("authStore")
 @observer
 class SignInForm extends Component{
-    @observable userName=''
-    @observable password=''
-    @observable isSubmit = false
-    
-    onChangeUsername  = () => {
-        this.userName = event.target.value;
-    }
-    
-    onChangePassword = () => {
-        this.password = event.target.value;
-    }
-    
-    onSubmit = () => {
-        const {authStore:{getToken}} = this.props;
-        if(this.userName !== '' && this.password !== ''){
-            getToken();
-            this.isSubmit = !this.isSubmit;
-            setTimeout(()=> {
-                this.props.history.push('/ecommerce-store/products');
-            },2000);
-        }
-    }
-    
     render(){
-        const {authStore:{access_token}} = this.props;
+        const {access_token,onChangeUsername,onChangePassword,onSubmit,userName,password,isSubmit,isInputFieldEmpty} = this.props;
         if(access_token !== undefined){
             return (
                 <Redirect to={{
-                    pathname:'/ecommerce-store/products'
+                    pathname:'/ecommerce-store/products',
                 }}/>    
             );
         }
@@ -44,11 +19,17 @@ class SignInForm extends Component{
             return (
                 <StyledAuthenticationContainer>
                     <StyledHeader>{`Sign in`}</StyledHeader>
-                    <StyledUserInput type="text" placeholder="Username" value={this.userName} onChange={this.onChangeUsername}/>
-                    <StyledUserPassword type="password" placeholder="Password" value={this.password} onChange={this.onChangePassword}/>
-                    <StyledLoginButton onClick={this.onSubmit} isSubmit={this.isSubmit}>
+                    <StyledInputFieldContainer>
+                        <StyledUserInput data-testid="test-user" type="text" placeholder="Username" value={userName} onChange={onChangeUsername}/>
+                        {(userName === '' && isInputFieldEmpty) && <StyledUserInputError>{`invalid username`}</StyledUserInputError>}
+                    </StyledInputFieldContainer>
+                    <StyledInputFieldContainer>
+                        <StyledUserPassword type="password" placeholder="Password" value={password} onChange={onChangePassword}/>
+                        {(password === '' && isInputFieldEmpty) && <StyledPasswordInputError>{`incorrect password`}</StyledPasswordInputError>}
+                    </StyledInputFieldContainer>
+                    <StyledLoginButton onClick={onSubmit} isSubmit={isSubmit}>
                     {
-                        !this.isSubmit ? "Sign in" : <Loader type="TailSpin" color="gray" text-align="center" height={20} width={20}/>
+                        !isSubmit ? "Sign in" : <Loader type="TailSpin" color="gray" text-align="center" height={20} width={20}/>
                     }
                     </StyledLoginButton>
                 </StyledAuthenticationContainer>

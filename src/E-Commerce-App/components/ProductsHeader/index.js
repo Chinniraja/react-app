@@ -10,7 +10,7 @@ class Header extends Component{
     
     onChangePrice = (event) => {
         const {productStore:{sortByPrice}} = this.props;
-        sortByPrice(event);
+        sortByPrice(event.target.value);
     }
     
     onChangeSearchText = (event) => {
@@ -24,7 +24,7 @@ class Header extends Component{
         return (
             <StyledHeaderContainer>
                 <StyledProductsCount>{`${productsCount} Product(s) found`}</StyledProductsCount>
-                <StyledSearchBar placeholder="Search products" onChange={this.onChangeSearchText} value={this.searchText}/>
+                <StyledSearchBar data-testid="Search products" placeholder="Search products" onChange={this.onChangeSearchText} value={this.searchText}/>
                 <StyledSortByPricesContainer>
                     <StyledText>{`Sort price by:`}</StyledText>
                     <StyledSizeDropDown onChange={this.onChangePrice}>

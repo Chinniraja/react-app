@@ -22,7 +22,7 @@ class Cart extends Component{
             return (
                 <StyledCartImageContainer>
                     <StyledImageContainer>
-                        <FiShoppingCart  onClick={this.openCart}/>
+                        <FiShoppingCart  onClick={this.openCart} data-testid="cart-open-button"/>
                     </StyledImageContainer>
                     <Styledcount>{productsCount}</Styledcount>
                 </StyledCartImageContainer>
@@ -31,7 +31,7 @@ class Cart extends Component{
         else {
             return (
                 <StyledCartListContainer>
-                    <StyledCloseBtn onClick={this.openCart}>{`X`}</StyledCloseBtn>
+                    <StyledCloseBtn onClick={this.openCart} data-testid="cart-close-button">{`X`}</StyledCloseBtn>
                     <StyledHeaderContainer>
                         <StyledCartHeader>
                             <StyledImageContainer isOpen={this.isOpen}>

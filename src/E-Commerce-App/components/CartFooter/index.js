@@ -4,7 +4,7 @@ import {StyledFooterSection,StyledSubTotal,StyledCheckoutButton,StyledTitle,Styl
 
 @inject("cartStore")
 @observer
-class CarFooter extends Component {
+class CartFooter extends Component {
     render() {
         const {cartStore:{onCheckout,totalPrice,productsCount}} = this.props;
         const subTotal = totalPrice;
@@ -21,4 +21,4 @@ class CarFooter extends Component {
     }
 }
 
-export default CarFooter;
+export default CartFooter;

@@ -33,7 +33,6 @@ class ProductsList extends Component {
     })
     
     render() {
-        console.log("productslist render");
         const {productStore:{getProductAPIStatus,getProductAPIError}} = this.props;
         return (
             <LoadingWrapperWithFailure
