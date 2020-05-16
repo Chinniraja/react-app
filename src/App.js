@@ -35,56 +35,72 @@ import {SignInPageRoute} from './Authentication/routes/SignInPage/SignInPageRout
 // configure({ enforceActions: true});
 import CounterParent from './practice';
 class App extends React.Component {
-  getCurrentTheme = () => {
-    return themeStore.selectedTheme;
-  }
-  
-  changeTheme = () => {
-    themeStore.setCurrentTheme();
-  }
-  
-  changeTheme = () => {
-    if(this.getCurrentTheme() === 'light'){
-      this.setCurrentTheme('dark');
-    }
-    else{
-      this.setCurrentTheme('light');
-    }
-  }
-  
-  // state={
-  //   selectedTheme:'Light Mode',
-  //   theme:'light',
-  //   themeOption:  {
-  //     light: {
-  //       id: "0",
-  //       name: "#fff"
-  //     },
-  //     dark: {
-  //       id: "1",
-  //       name: "#2b3945"
-  //     }
-  //   }
+  // getCurrentTheme = () => {
+  //   return themeStore.selectedTheme;
   // }
   
   // changeTheme = () => {
-  //   const mode = (this.state.selectedTheme === 'Light Mode') ? 'Dark Mode' : 'Light Mode';
-  //   const theme = (this.state.selectedTheme === 'Light Mode') ? 'dark' : 'light';
-  //   this.setState({selectedTheme:mode,theme});
+  //   themeStore.setCurrentTheme();
   // }
   
+  // changeTheme = () => {
+  //   if(this.getCurrentTheme() === 'light'){
+  //     this.setCurrentTheme('dark');
+  //   }
+  //   else{
+  //     this.setCurrentTheme('light');
+  //   }
+  // }
+  
+  state={
+    selectedTheme:'Light Mode',
+    theme:'light',
+    themeOption:  {
+      light: {
+        id: "0",
+        name: "#fff"
+      },
+      dark: {
+        id: "1",
+        name: "#2b3945"
+      }
+    }
+  }
+  
+  changeTheme = () => {
+    const mode = (this.state.selectedTheme === 'Light Mode') ? 'Dark Mode' : 'Light Mode';
+    const theme = (this.state.selectedTheme === 'Light Mode') ? 'dark' : 'light';
+    this.setState({selectedTheme:mode,theme});
+  }
+  
   render(){
-    // const {theme} = this.state;
-    // const mode = this.state.themeOption[theme];
+    const {theme} = this.state;
+    const mode = this.state.themeOption[theme];
     return (
       <Provider {...stores}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route exact path="/projects">
+          <Route exact path="/">
             <HomePage/>
           </Route>
-          {ecommerceRoutes}
-          <Route exact path="/" component={SignInPageRoute}/>
+          {/*ecommerceRoutes*/}
+          {/*<Route exact path="/" component={SignInPageRoute}/>*/}
+          
+          <Route path="/countries-dashboard">
+            <CountriesDashboardConatiner>  
+              <HeaderThemeSection color={mode.name} changeTheme={this.changeTheme} selectedTheme={theme} />
+              <CountriesDashboardApp color={mode.name}/>
+            </CountriesDashboardConatiner>
+          </Route>
+          <Route exact path="/:id" children=
+            {
+              <CountriesDashboardConatiner  selectedTheme={theme}>
+                <HeaderThemeSection color={mode.name} changeTheme={this.changeTheme} selectedTheme={theme} />
+                <ShowCountryDetails color={mode.name}/>
+              </CountriesDashboardConatiner>
+            }
+          />
+          
           <Route  path="/grid-game">
             <GridGameDashboard />
           </Route>
@@ -137,24 +153,9 @@ class App extends React.Component {
             <FormComponents />
           </Route>
           
-          <Route path="/countries-dashboard">
-            <CountriesDashboardConatiner>  
-              <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={this.getCurrentTheme()} />
-              <CountriesDashboardApp />
-            </CountriesDashboardConatiner>
-          </Route>
           <Route path="/game-dashboard">
             <GameDashboard />
           </Route>
-          
-          <Route exact path="/countries" children=
-            {
-              <CountriesDashboardConatiner  selectedTheme={this.selectedTheme}>
-                <HeaderThemeSection changeTheme={this.changeTheme} selectedTheme={this.getCurrentTheme()} />
-                <ShowCountryDetails />
-              </CountriesDashboardConatiner>
-            }
-          />
         </Switch>
       </Router>
       </Provider>

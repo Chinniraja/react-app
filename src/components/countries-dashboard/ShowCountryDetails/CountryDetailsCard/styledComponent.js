@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
 const CountryDetails = styled.div`
-${tw``}
+${tw`h-screen`}
 `;
 
 const Button = styled.div`

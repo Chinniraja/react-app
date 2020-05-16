@@ -9,7 +9,6 @@ class CountryDetailsCard extends React.Component{
     }
     
     render() {
-        console.log("show-country-details render");
         const {country,goBack,color,renderLanguages,borderCountries} = this.props;
         return (
             <StyledContryDetails color={color} >

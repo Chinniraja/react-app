@@ -2,6 +2,7 @@ import React from 'react';
 import shallowEqual from '../../../../node_modules/@babel/types/lib/utils/shallowEqual';
 import {HeaderContainer,Theme,H3,Span} from './styledComponent';
 
+
 class HeaderThemeSection extends React.Component{
     
     shouldComponentUpdate(nextProps,nextState){
@@ -9,7 +10,6 @@ class HeaderThemeSection extends React.Component{
     }
     
     render() {
-        console.log("header render");
         const {selectedTheme,changeTheme,className,color} = this.props;
         return (
             <HeaderContainer color={color} className={className}>

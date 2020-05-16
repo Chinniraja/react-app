@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
 const Loading = styled.div `
-${tw`flex justify-center w-screen my-20 text-4xl`}
+${tw`flex justify-center items-center w-screen text-4xl h-screen`}
 `;
 
 const CountriesDetailsContainer = styled.div`
-background-color: ${props => props.color};
+background-color: ${props => props.color === "#fff" ? '#fff' : '#1a202c'};
 color: ${props => props.color === '#fff' ? 'black' : 'white'};
 margin-top: ${props => props.color === '#fff' ? '5px' : '0px'};
 `;

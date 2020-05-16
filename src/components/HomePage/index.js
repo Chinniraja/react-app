@@ -24,7 +24,10 @@ class App extends React.Component {
         <Link to="/users">Users</Link>
         <Link to="/page-1">Page 1</Link>
         <ul className="home-page">
-        
+        <li>
+        <Link to="/countries-dashboard">Countries Dashboard</Link>
+      </li>
+      
       <li>
         <Link to="/mobx-todo-app">Todo App</Link>
       </li>
@@ -45,9 +48,6 @@ class App extends React.Component {
       </li>
       <li>
         <Link to="/form-components">Form Components</Link>
-      </li>
-      <li>
-        <Link to="/countries-dashboard">Countries Dashboard</Link>
       </li>
       
       <li>

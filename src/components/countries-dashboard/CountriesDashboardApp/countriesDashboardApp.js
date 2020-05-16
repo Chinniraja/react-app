@@ -1,26 +1,18 @@
 /*global fetch*/
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import withCountries from '../../../HOCS/CountriesDashboardHOCS/getCountriesDetails';
 import RenderCountries from '../RenderCountries/renderCountries';
 import FilterCountriesByRegionOrCountry from '../FilterCountriesByRegionOrCountry/filterCountriesByRegionOrCountry';
 import {DashboardContainer,Loading} from './styledComponent';
 
 class CountriesDashboardApp extends React.Component{
     state = {
-        countries:[],
         searchCountry:'',
         selectedRegion:'All',
         isCountrySelected:false,
         selectedCountry:null,
         alphabeticalOrder:'A-Z'
-    }
-    
-    async componentDidMount() {
-        const data = await fetch('https://restcountries.eu/rest/v2/all');
-        const jsonData = await data.json();
-        setTimeout(() =>{
-        this.setState({countries:jsonData});
-        },600);
     }
     
     searchCountry = (event) => {
@@ -37,7 +29,7 @@ class CountriesDashboardApp extends React.Component{
     
     isCountrySelected = (event) => {
         let country;
-        const selectedCountry = this.state.countries.filter(eachCountry => {
+        const selectedCountry = this.props.countries.filter(eachCountry => {
             if(event.currentTarget.id === eachCountry.name){
                 this.props.history.push(eachCountry.name);
                 country = event.currentTarget.id === eachCountry.name;
@@ -55,7 +47,7 @@ class CountriesDashboardApp extends React.Component{
         const {searchCountry,selectedRegion,alphabeticalOrder} = this.state;
         let filteredCountries,updatedFilteredCountries;
         if(selectedRegion === 'All'){
-            filteredCountries = this.state.countries.filter(eachCountry => {
+            filteredCountries = this.props.countries.filter(eachCountry => {
                 if(searchCountry !== ''){
                     if(searchCountry.match("^[a-zA-Z]*$")){
                         return eachCountry.name.toLowerCase().match(searchCountry.toLowerCase());
@@ -68,7 +60,7 @@ class CountriesDashboardApp extends React.Component{
             });
         }
         else{
-            filteredCountries = this.state.countries.filter(eachCountry => {
+            filteredCountries = this.props.countries.filter(eachCountry => {
                 if(searchCountry !== ''){
                     if(selectedRegion === eachCountry.region){
                         if(searchCountry.match("^[a-zA-Z]*$")){
@@ -97,8 +89,7 @@ class CountriesDashboardApp extends React.Component{
     
     render() {
         const filteredCountries = this.filteredCountries();
-        const {color} = this.props;
-        const {countries} = this.state;
+        const {color,countries} = this.props;
         if(countries.length){
             return (
                 <DashboardContainer color={color}>
@@ -117,4 +108,4 @@ class CountriesDashboardApp extends React.Component{
     }
 }
 
-export default withRouter(CountriesDashboardApp);
+export default withRouter(withCountries(CountriesDashboardApp));

@@ -12,6 +12,7 @@ class SignInPageRoute extends Component {
     @observable isSubmit = false
     @observable isInputFieldEmpty = false
     
+    
     onChangeUsername  = () => {
         this.userName = event.target.value;
     }

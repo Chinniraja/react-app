@@ -1,6 +1,7 @@
 /*global fetch*/
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import withCountries from '../../../HOCS/CountriesDashboardHOCS/getCountriesDetails';
 import './CountriesDashboardApp.css';
 import CountryDetailsCard from './CountryDetailsCard/countryDetailsCard';
 import {Loading,CountriesDetailsContainer,BorderCountriesButton} from './styledComponent';
@@ -9,32 +10,29 @@ import {Loading,CountriesDetailsContainer,BorderCountriesButton} from './styledC
 class ShowCountryDetails extends React.Component{
     state = {
         selectedCountry :null,
-        countries:[],
+        countries:[]
     }
     
-    async componentDidMount(){
-        const data = await fetch('https://restcountries.eu/rest/v2/all');
-        const jsonData = await data.json();
-        const country = jsonData.filter(eachCountry => {
-            return eachCountry.name === this.props.match.params.id;
-        });
-        setTimeout(() => {
-            this.setState({countries:jsonData,selectedCountry:country});
-        },200);
-    }
+    // componentDidUpdate(){
+    //     console.log("componentDidMount",this.props);
+    //     const country = this.props.countries.filter(eachCountry => {
+    //         return eachCountry.name === this.props.match.params.id;
+    //     });
+    //     setTimeout(() => {
+    //         this.setState({countries:this.props.countries,selectedCountry:country});
+    //     },200);
+    // }
     
-    async getData(){
-        const data = await fetch('https://restcountries.eu/rest/v2/all');
-        const jsonData = await data.json();
-        const country = jsonData.filter(eachCountry => {
+    getData(){
+        const country = this.props.countries.find(eachCountry => {
             return eachCountry.name === this.props.match.params.id;
         });
-        this.setState({countries:jsonData,selectedCountry:country});
+        this.setState({countries:this.props.countries,selectedCountry:country});
     }
     
     renderLanguages = () => {
         let languages=[];
-        const country = this.state.selectedCountry[0];
+        const country = this.state.selectedCountry;
         country.languages.forEach(eachLanguage => {
             languages = [...languages,eachLanguage.name];
         });
@@ -53,7 +51,7 @@ class ShowCountryDetails extends React.Component{
     }
     
     borderCountries = () => {
-        const country = this.state.selectedCountry[0];
+        const country = this.state.selectedCountry;
         const {color} = this.props;
         if(country.borders.length) {
             const borderCountries = country.borders.map(country => {
@@ -69,7 +67,7 @@ class ShowCountryDetails extends React.Component{
     
     isCountrySelected = (event) => {
         const {countries} = this.state;
-        const selectedCountry = countries.filter(eachCountry => {
+        const selectedCountry = countries.find(eachCountry => {
             if(event.target.id === eachCountry.name){
                 this.props.history.push(eachCountry.name);
                 return eachCountry;
@@ -84,12 +82,17 @@ class ShowCountryDetails extends React.Component{
     goBack = () => {
         this.props.history.goBack();
         this.getData();
+        console.log(this.state.selectedCountry);
     }
     
     render() {
-        const {color} = this.props;
+        const {color,countries} = this.props;
+        const {selectedCountry} = this.state;
+        if(countries.length && selectedCountry === null){
+            this.getData();
+        }
         if(this.state.selectedCountry !== null){
-            const country = this.state.selectedCountry[0];
+            const country = this.state.selectedCountry;
             return (
                 <CountriesDetailsContainer color={color}>
                     <CountryDetailsCard color={color} key={country.name} country={country} borderCountries={this.borderCountries} renderLanguages={this.renderLanguages} goBack={this.goBack}/>
@@ -108,4 +111,4 @@ class ShowCountryDetails extends React.Component{
 }
 
 
-export default withRouter(ShowCountryDetails);
+export default withRouter(withCountries(ShowCountryDetails));
