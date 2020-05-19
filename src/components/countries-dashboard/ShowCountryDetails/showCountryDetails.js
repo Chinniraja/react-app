@@ -14,16 +14,18 @@ class ShowCountryDetails extends React.Component{
     }
     
     // componentDidUpdate(){
+    //     console.log(1);
     //     console.log("componentDidMount",this.props);
     //     const country = this.props.countries.filter(eachCountry => {
     //         return eachCountry.name === this.props.match.params.id;
     //     });
     //     setTimeout(() => {
-    //         this.setState({countries:this.props.countries,selectedCountry:country});
+            // this.setState({countries:this.props.countries});
     //     },200);
     // }
     
     getData(){
+        console.log("after",this.props.match.params.id);
         const country = this.props.countries.find(eachCountry => {
             return eachCountry.name === this.props.match.params.id;
         });
@@ -80,14 +82,15 @@ class ShowCountryDetails extends React.Component{
     }
     
     goBack = () => {
+        console.log("before",this.props.match.params.id);
         this.props.history.goBack();
         this.getData();
-        console.log(this.state.selectedCountry);
     }
     
     render() {
         const {color,countries} = this.props;
         const {selectedCountry} = this.state;
+        console.log(selectedCountry);
         if(countries.length && selectedCountry === null){
             this.getData();
         }

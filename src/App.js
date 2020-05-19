@@ -34,6 +34,8 @@ import EcommerceDashboard from './E-Commerce-App/components/EcommerceDashboard/i
 import {SignInPageRoute} from './Authentication/routes/SignInPage/SignInPageRoute';
 // configure({ enforceActions: true});
 import CounterParent from './practice';
+import {PracticeAdvancedConceptsRoute} from './Common/routes/PracticeAdvancedConceptsRoute';
+
 class App extends React.Component {
   // getCurrentTheme = () => {
   //   return themeStore.selectedTheme;
@@ -85,7 +87,9 @@ class App extends React.Component {
           </Route>
           {/*ecommerceRoutes*/}
           {/*<Route exact path="/" component={SignInPageRoute}/>*/}
-          
+          <Route path="/practice-advanced-concepts">
+            <PracticeAdvancedConceptsRoute/>
+          </Route>
           <Route path="/countries-dashboard">
             <CountriesDashboardConatiner>  
               <HeaderThemeSection color={mode.name} changeTheme={this.changeTheme} selectedTheme={theme} />

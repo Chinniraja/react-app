@@ -19,7 +19,7 @@ class App extends React.Component {
         >
           Learn React
         </a>
-        
+        <Link to="/practice-advanced-concepts">Practice Advanced Concepts Route</Link>
         <Link to="/grid-game">Grid Game</Link>
         <Link to="/users">Users</Link>
         <Link to="/page-1">Page 1</Link>
