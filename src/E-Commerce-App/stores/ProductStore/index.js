@@ -10,7 +10,12 @@ class ProductStore {
     @observable searchText
     @observable getProductAPIStatus
     @observable getProductAPIError
+    @observable pageNumber
+    @observable productsCount
+    @observable offset
+    limit
     productAPIService
+    
     
     constructor(productAPIService){
         this.productAPIService = productAPIService;
@@ -23,13 +28,17 @@ class ProductStore {
         this.selectedSize = [];
         this.sortByPrize = '';
         this.searchText = '';
+        this.pageNumber = 1;
+        this.productsCount = 0;
+        this.offset = 0;
+        this.limit = 3;
         this.getProductAPIStatus = API_FETCHING;
     }
     
     
     @action.bound
-    getProduct(){
-        const productsPromise = this.productAPIService.getProducts();
+    getProduct(offset){
+        const productsPromise = this.productAPIService.getProducts(this.limit,this.offset);
         return bindPromiseWithOnSuccess(productsPromise)
         .to(this.setProductAPIStatus,this.setProductAPIResponse)
         .catch(this.setProductAPIError);
@@ -47,6 +56,18 @@ class ProductStore {
     }
     
     @action.bound
+    previousPage() {
+        --this.pageNumber;
+        this.offset -= this.limit;
+    }
+    
+    @action.bound
+    nextPage() {
+        ++this.pageNumber;
+        this.offset += this.limit;
+    }
+    
+    @action.bound
     sortByPrice(value){
         this.sortByPrize = value;
     }
@@ -58,8 +79,9 @@ class ProductStore {
     
     @action.bound
     setProductAPIResponse(apiResponse){
-        apiResponse.map(eachProduct => new ProductModel(eachProduct));
-        this.productsList = apiResponse;
+        apiResponse.products.map(eachProduct => new ProductModel(eachProduct));
+        this.productsList = apiResponse.products;
+        this.productsCount = apiResponse.total;
     }
     
     @action.bound
@@ -105,9 +127,9 @@ class ProductStore {
         return filteredList;
     }
     
-    @computed get productsCount(){
-        return this.filterListBySizeAndPrice.length;
-    }
+    // @computed get productsCount(){
+    //     return this.totalProducts;
+    // }
 }
 
 export default ProductStore;

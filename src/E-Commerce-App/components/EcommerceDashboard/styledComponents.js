@@ -14,7 +14,7 @@ const StyledSignOutButton = styled.button`
 `;
 
 const StyledProductListAndHeaderContainer = styled.div`
-    ${tw`w-9/12 h-auto flex flex-col items-start pt-4 justify-between`};
+    ${tw`w-9/12 h-full flex flex-col items-start pt-4`};
 `;
 
 
@@ -33,6 +33,7 @@ const StyledDashboardHeader = styled.div`
 const StyledContent = styled.div`
     ${tw`flex w-screen h-auto`}
     position:relative;
+    flex-grow: 1;
 `;
 
 export {StyledDashboard,StyledSelectSizeContainer,StyledSignOutButton,StyledProductListAndHeaderContainer,StyledDashboardHeader,StyledContent,StyledCartContainer};

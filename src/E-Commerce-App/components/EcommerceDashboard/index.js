@@ -5,6 +5,7 @@ import Cart from '../Cart/index';
 import Header from '../ProductsHeader/index';
 import SelectSize from '../FilterSize/index';
 import ProductsList from '../ProductsList/index';
+import {Pagination} from '../Pagination';
 import {StyledDashboard,StyledSelectSizeContainer,StyledSignOutButton,StyledProductListAndHeaderContainer,StyledCartContainer,StyledDashboardHeader,StyledContent} from './styledComponents';
 
 @inject("productStore","authStore")
@@ -36,6 +37,7 @@ class EcommerceDashboard extends Component{
                     <StyledProductListAndHeaderContainer>
                         <Header/>
                         <ProductsList/>
+                        <Pagination/>
                     </StyledProductListAndHeaderContainer>
                 </StyledContent>
             </StyledDashboard>

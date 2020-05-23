@@ -6,7 +6,7 @@ const StyledProductsContainer = styled.div`
 `;
 
 const StyledProductsListContainer = styled.div`
-    ${tw`w-full h-full flex flex-wrap justify-around items-center`}
+    ${tw`w-full flex flex-wrap justify-around items-center`}
 `;
 
 export {StyledProductsContainer,StyledProductsListContainer};

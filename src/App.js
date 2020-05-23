@@ -82,11 +82,12 @@ class App extends React.Component {
       <Provider {...stores}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
+          {ecommerceRoutes}
+          {<Route exact path="/" component={SignInPageRoute}/>}
           <Route exact path="/">
             <HomePage/>
           </Route>
-          {/*ecommerceRoutes*/}
-          {/*<Route exact path="/" component={SignInPageRoute}/>*/}
+          
           <Route path="/practice-advanced-concepts">
             <PracticeAdvancedConceptsRoute/>
           </Route>

@@ -3,6 +3,7 @@ import {observable} from 'mobx';
 import {observer,inject} from 'mobx-react';
 import Product from '../Product/index';
 import LoadingWrapperWithFailure from '../../common/LoadingWrapperWithFailure/index';
+import NoDataView from '../../common/NoDataView';
 import {StyledProductsListContainer} from './styledComponents';
 
 @inject("productStore")
@@ -21,14 +22,21 @@ class ProductsList extends Component {
     renderProductsList = observer(() => {
         const {productStore:{filterListBySizeAndPrice}} = this.props;
         const filteredList = filterListBySizeAndPrice;
+        if(filteredList.length){
+            return (
+                <StyledProductsListContainer>
+                    {
+                        filteredList.map((eachProduct) => {
+                            return <Product key={eachProduct.id} id={eachProduct.id} eachProduct={eachProduct}/>;
+                        })
+                    }
+                </StyledProductsListContainer>    
+            );
+        }
         return (
             <StyledProductsListContainer>
-                {
-                    filteredList.map((eachProduct) => {
-                        return <Product key={eachProduct.id} id={eachProduct.id} eachProduct={eachProduct}/>;
-                    })
-                }
-            </StyledProductsListContainer>    
+                <NoDataView/>
+            </StyledProductsListContainer>
         );
     })
     
